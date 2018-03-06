@@ -1,0 +1,9 @@
+{
+	"name": "Easy Content-Security-Policy",
+	"version": "1.0.0",
+	"url": "https://github.com/Offroadcode/umbraco-content-security-policy",
+	"author": "Offroadcode - Janae Cram",
+	"authorUrl": "http://offroadcode.com/",
+	"license": "MIT",
+	"licenseUrl": "http://opensource.org/licenses/MIT"
+}

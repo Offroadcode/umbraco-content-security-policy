@@ -1,0 +1,5 @@
+build/ContentSecurityPolicy/packages/
+build/node_modules/
+
+*.suo
+*.cache

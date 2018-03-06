@@ -1,0 +1,28 @@
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows                              
+-------------------------------------------------------------------------------
+
+  Started : Tuesday, March 6, 2018 1:45:13 PM
+   Source : C:\GitHub\umbraco-content-security-policy\build\ContentSecurityPolicy\bin\
+     Dest : C:\GitHub\umbraco-content-security-policy\build\ContentSecurityPolicy\App_Data\NuGetBackup\20180306-134513\bin\
+
+    Files : *.*
+	    
+  Options : *.* /S /E /DCOPY:DA /COPY:DAT /R:1000000 /W:30 
+
+------------------------------------------------------------------------------
+
+	                   0	C:\GitHub\umbraco-content-security-policy\build\ContentSecurityPolicy\bin\
+	  New Dir          0	C:\GitHub\umbraco-content-security-policy\build\ContentSecurityPolicy\bin\Debug\
+	  New Dir          0	C:\GitHub\umbraco-content-security-policy\build\ContentSecurityPolicy\bin\Release\
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         3         2         1         0         0         0
+   Files :         0         0         0         0         0         0
+   Bytes :         0         0         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+   Ended : Tuesday, March 6, 2018 1:45:13 PM
+
