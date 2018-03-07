@@ -26,7 +26,13 @@
   <Languages />
   <DataTypes />
   <control />
-  <Actions />
+  <Actions>
+    <Action runat="install"
+      undo="true"
+      alias="AddHttpModule"
+      position="beginning"
+      name="ContentSecurityPolicyModule"
+      type="ContentSecurityPolicy.HttpModules.ContentSecurityPolicyModule, ContentSecurityPolicy" />
   <files>
   	<% files.forEach(function(file) { %>
   	<file>

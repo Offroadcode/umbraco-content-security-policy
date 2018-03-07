@@ -206,7 +206,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Extensions\SecurityExtensions.cs" />
+    <Compile Include="Helpers\ConfigHelpers.cs" />
+    <Compile Include="HttpModules\ContentSecurityPolicyModule.cs" />
+    <Compile Include="HttpModules\BackOfficeContentSecurityPolicyModule.cs" />
+    <Compile Include="PackageActions\AddHttpModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

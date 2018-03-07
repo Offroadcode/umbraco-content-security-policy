@@ -14,9 +14,13 @@ module.exports = function(grunt) {
         spawn: false,
         atBegin: true
       },
-      dll: {
+      cs: {
         files: ['ContentSecurityPolicy/**/*.cs'] ,
         tasks: ['msbuild:dist', 'copy:dll']
+      },
+      dll: {
+        files: ['ContentSecurityPolicy/**/ContentSecurityPolicy.dll'],
+        tasks: ['copy:dll']
       },
       // js: {
       //   files: ['assets/**/*.js'],
@@ -70,6 +74,17 @@ module.exports = function(grunt) {
                 return dest + src;
               }
         },
+        html: {
+          cwd: 'config/',
+          src: [
+              'contentSecurityPolicies.config',
+          ],
+          dest: '<%= dest %>/Config/',
+          expand: true,
+          rename: function(dest, src) {
+              return dest + src;
+            }
+      },
 		css: {
 			cwd: 'assets/css/',
 			src: [
