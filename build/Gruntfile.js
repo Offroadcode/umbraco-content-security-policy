@@ -22,6 +22,10 @@ module.exports = function(grunt) {
         files: ['ContentSecurityPolicy/**/ContentSecurityPolicy.dll'],
         tasks: ['copy:dll']
       },
+      config: {
+        files: ['config/ContentSecurityPolicies.config'],
+        tasks: ['copy:config']
+      },
       // js: {
       //   files: ['assets/**/*.js'],
       //   tasks: ['concat:dist']
@@ -74,10 +78,10 @@ module.exports = function(grunt) {
                 return dest + src;
               }
         },
-        html: {
+        config: {
           cwd: 'config/',
           src: [
-              'contentSecurityPolicies.config',
+              'ContentSecurityPolicies.config',
           ],
           dest: '<%= dest %>/Config/',
           expand: true,
