@@ -39,11 +39,6 @@ namespace ContentSecurityPolicy.HttpModules
                     {
                         var policyHeader = HttpHelpers.BuildContentSecurityPolicyHeader(policy);
 
-                        if (!string.IsNullOrEmpty(response.Headers["Content-Security-Policy"]))
-                        {
-                            response.Headers.Remove("Content-Security-Policy");
-                        }
-
                         if (policy.Attributes != null && policy.Attributes["location"] != null && !string.IsNullOrEmpty(policy.Attributes["location"].Value))
                         {
                             var location = policy.Attributes["location"].Value;
@@ -51,6 +46,11 @@ namespace ContentSecurityPolicy.HttpModules
                             {
                                 if (HttpHelpers.IsFolderRequest(location))
                                 {
+                                    if (!string.IsNullOrEmpty(response.Headers["Content-Security-Policy"]))
+                                    {
+                                        response.Headers.Remove("Content-Security-Policy");
+                                    }
+
                                     response.AddHeader("Content-Security-Policy", policyHeader);
                                 }
                             }
@@ -58,6 +58,11 @@ namespace ContentSecurityPolicy.HttpModules
                             {
                                 if (HttpHelpers.IsDomainRequest(location))
                                 {
+                                    if (!string.IsNullOrEmpty(response.Headers["Content-Security-Policy"]))
+                                    {
+                                        response.Headers.Remove("Content-Security-Policy");
+                                    }
+
                                     response.AddHeader("Content-Security-Policy", policyHeader);
                                 }
                             }
