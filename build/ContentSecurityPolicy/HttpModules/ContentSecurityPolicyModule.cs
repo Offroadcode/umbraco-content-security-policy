@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Web;
+using ContentSecurityPolicy.Helpers;
 
 namespace ContentSecurityPolicy.HttpModules
 {
@@ -23,7 +24,16 @@ namespace ContentSecurityPolicy.HttpModules
             if (string.IsNullOrEmpty(HttpContext.Current.Response.Headers["Content-Security-Policy"]))
             {
                 var response = HttpContext.Current.Response;
-                response.AddHeader("Content-Security-Policy", "default-src 'self' data:; style-src 'self' 'unsafe-inline' fonts.googleapis.com; script-src 'self' 'unsafe-inline' code.jquery.com ajax.aspnetcdn.com; font-src 'self' fonts.gstatic.com");
+
+                if (HttpHelpers.IsBackOfficeRequest())
+                {
+                    response.AddHeader("Content-Security-Policy",
+                        "default-src 'self' data:; style-src 'self' 'unsafe-inline' fonts.googleapis.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' code.jquery.com ajax.aspnetcdn.com; font-src 'self' fonts.gstatic.com");
+                }
+                else
+                {
+                    response.AddHeader("Content-Security-Policy", "default-src 'self' data:; style-src 'self' 'unsafe-inline' fonts.googleapis.com; script-src 'self' 'unsafe-inline' code.jquery.com ajax.aspnetcdn.com; font-src 'self' fonts.gstatic.com");
+                }
             }
         }
     }
