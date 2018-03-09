@@ -32,11 +32,11 @@ namespace ContentSecurityPolicy.Helpers
 
             if (HttpContext.Current != null)
             {
-                if (HttpContext.Current.Request.RawUrl.StartsWith(domain))
+                if (HttpContext.Current.Request.Url.ToString().StartsWith(domain))
                 {
                     inDomain = true;
                 }
-                else if (HttpContext.Current.Request.UrlReferrer != null && HttpContext.Current.Request.Url.AbsolutePath.StartsWith(domain))
+                else if (HttpContext.Current.Request.UrlReferrer != null && HttpContext.Current.Request.UrlReferrer.ToString().StartsWith(domain))
                 {
                     inDomain = true;
                 }
