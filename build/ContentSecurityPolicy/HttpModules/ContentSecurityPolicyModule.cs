@@ -47,9 +47,15 @@ namespace ContentSecurityPolicy.HttpModules
                                     if (!string.IsNullOrEmpty(response.Headers["Content-Security-Policy"]))
                                     {
                                         response.Headers.Remove("Content-Security-Policy");
+
+                                        // This is for internet explorer
+                                        response.Headers.Remove("X-Content-Security-Policy");
                                     }
 
                                     response.AddHeader("Content-Security-Policy", policyHeader);
+
+                                    // This is for internet explorer
+                                    response.AddHeader("X-Content-Security-Policy", policyHeader);
                                 }
                             }
                             else if (policy.Location.StartsWith("http://") || policy.Location.StartsWith("https://"))
@@ -59,15 +65,24 @@ namespace ContentSecurityPolicy.HttpModules
                                     if (!string.IsNullOrEmpty(response.Headers["Content-Security-Policy"]))
                                     {
                                         response.Headers.Remove("Content-Security-Policy");
+
+                                        // This is for internet explorer
+                                        response.Headers.Remove("X-Content-Security-Policy");
                                     }
 
                                     response.AddHeader("Content-Security-Policy", policyHeader);
+
+                                    // This is for internet explorer
+                                    response.AddHeader("X-Content-Security-Policy", policyHeader);
                                 }
                             }
                         }
                         else
                         {
                             response.AddHeader("Content-Security-Policy", policyHeader);
+
+                            // This is for internet explorer
+                            response.AddHeader("X-Content-Security-Policy", policyHeader);
                         }
                     }
                 }
