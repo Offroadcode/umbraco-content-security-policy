@@ -33,6 +33,7 @@
       position="beginning"
       name="ContentSecurityPolicyModule"
       type="ContentSecurityPolicy.HttpModules.ContentSecurityPolicyModule, ContentSecurityPolicy" />
+  </Actions>
   <files>
   	<% files.forEach(function(file) { %>
   	<file>

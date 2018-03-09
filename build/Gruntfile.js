@@ -113,7 +113,9 @@ module.exports = function(grunt) {
         },
        umbraco: {
         cwd: '<%= dest %>',
-        src: '**/*',
+        src: [
+          '**/*',
+        ],
         dest: 'tmp/umbraco',
         expand: true
       }
@@ -200,7 +202,8 @@ module.exports = function(grunt) {
     //'copy:manifest', 
     // 'copy:css', 
     'msbuild:dist', 
-    'copy:dll', 
+    'copy:dll',
+    'copy:config',
     // 'clean:html', 
     // 'clean:js', 
     // 'clean:sass', 
