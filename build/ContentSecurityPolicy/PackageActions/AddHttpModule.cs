@@ -50,12 +50,10 @@ namespace ContentSecurityPolicy.PackageActions
             preCondition = GetAttributeDefault(xmlData, "preCondition", null);
 
             //Create a new xml document
-            XmlDocument document = new XmlDocument
-            {
-                PreserveWhitespace = true
-            };
+            XmlDocument document = new XmlDocument();
 
             //Keep current indentions format
+            document.PreserveWhitespace = true;
 
             //Load the web.config file into the xml document
             document.Load(HttpContext.Current.Server.MapPath(FULL_PATH));
@@ -128,6 +126,8 @@ namespace ContentSecurityPolicy.PackageActions
             //Set insert node default true
             insertNode = true;
 
+            rootNode = document.SelectSingleNode("//configuration/system.webServer/modules");
+
             if (rootNode != null && name != null)
             {
                 //Look for existing nodes with same path like the new node
@@ -157,7 +157,7 @@ namespace ContentSecurityPolicy.PackageActions
                         //Create new add node with attributes
                         XmlNode newAddNode = document.CreateElement("add");
                         newAddNode.Attributes.Append(
-                            XmlHelper.AddAttribute(document, "name", name));                                        
+                            XmlHelper.AddAttribute(document, "name", name));
                         newAddNode.Attributes.Append(
                             XmlHelper.AddAttribute(document, "type", type));
 
@@ -400,10 +400,10 @@ namespace ContentSecurityPolicy.PackageActions
         {
             return spa.helper.parseStringToXmlNode(
                 "<Action runat=\"install\" undo=\"true/false\" alias=\"AddHttpModule\" "
-                    + "position=\"beginning/end\" "
-                    + "name=\"TimingModule\" "
-                    + "type=\"Timer, TimingModule\" "
-                    + "preCondition=\"managedHandler\" />"
+                + "position=\"beginning/end\" "
+                + "name=\"TimingModule\" "
+                + "type=\"Timer, TimingModule\" "
+                + "preCondition=\"managedHandler\" />"
             );
         }
 
