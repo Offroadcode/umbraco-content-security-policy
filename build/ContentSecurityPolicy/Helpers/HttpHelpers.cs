@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Text;
 using System.Web;
-using System.Xml;
+using ContentSecurityPolicy.Models;
 
 namespace ContentSecurityPolicy.Helpers
 {
@@ -45,37 +45,37 @@ namespace ContentSecurityPolicy.Helpers
             return inDomain;
         }
 
-        public static string BuildContentSecurityPolicyHeader(XmlNode policy)
+        public static string BuildContentSecurityPolicyHeader(Policy policy)
         {
             var header = string.Empty;
 
-            if (policy.HasChildNodes)
+            if (policy.HasSources)
             {
-                header = CombineAllowedSources(policy.ChildNodes);
+                header = CombineAllowedSources(policy.Sources);
             }
 
             return header;
         }
 
-        public static string CombineAllowedSources(XmlNodeList sources)
+        public static string CombineAllowedSources(IEnumerable<Source> sources)
         {
             var sourceList = new List<string>();
-            foreach (XmlNode source in sources)
+            foreach (var source in sources)
             {
-                if (source.Attributes != null && source.Attributes["name"] != null)
+                if (!string.IsNullOrEmpty(source.Name))
                 {
                     var allowedList = new List<string>();
-                    if (source.HasChildNodes)
+                    if (source.HasAllowedList)
                     {
-                        foreach (XmlNode allowedSource in source.ChildNodes)
+                        foreach (var allowedSource in source.AllowedList)
                         {
-                            allowedList.Add(allowedSource.InnerText);
+                            allowedList.Add(allowedSource);
                         }
                     }
 
                     var sourceString = string.Join(" ", allowedList);
                     var sb = new StringBuilder();
-                    sb.Append(source.Attributes["name"].Value + " ");
+                    sb.Append(source.Name + " ");
                     sb.Append(sourceString);
                     sb.Append(";");
                     if (!string.IsNullOrEmpty(sb.ToString()))

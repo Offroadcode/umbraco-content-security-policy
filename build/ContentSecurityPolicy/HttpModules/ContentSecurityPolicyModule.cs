@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Web;
+using System.Web.Caching;
 using System.Xml;
 using ContentSecurityPolicy.Helpers;
+using ContentSecurityPolicy.Models;
 
 namespace ContentSecurityPolicy.HttpModules
 {
     public class ContentSecurityPolicyModule : IHttpModule
     {
-        private readonly string FullPath = "~/Config/ContentSecurityPolicies.config";
+        
 
         public void Dispose()
         {
@@ -28,23 +30,19 @@ namespace ContentSecurityPolicy.HttpModules
             {
                 var response = HttpContext.Current.Response;
 
-                XmlDocument document = new XmlDocument();
+                var csps = SecurityPoliciesCollectionManager.GetPolicies();
 
-                document.Load(HttpContext.Current.Server.MapPath(FullPath));
-                var policies = document.SelectNodes("//Policy");
-
-                if (policies != null)
+                if (csps != null && csps.HasPolicies)
                 {
-                    foreach (XmlNode policy in policies)
+                    foreach (var policy in csps.Policies)
                     {
                         var policyHeader = HttpHelpers.BuildContentSecurityPolicyHeader(policy);
 
-                        if (policy.Attributes != null && policy.Attributes["location"] != null && !string.IsNullOrEmpty(policy.Attributes["location"].Value))
+                        if (!string.IsNullOrEmpty(policy.Location))
                         {
-                            var location = policy.Attributes["location"].Value;
-                            if (location.StartsWith("/"))
+                            if (policy.Location.StartsWith("/"))
                             {
-                                if (HttpHelpers.IsFolderRequest(location))
+                                if (HttpHelpers.IsFolderRequest(policy.Location))
                                 {
                                     if (!string.IsNullOrEmpty(response.Headers["Content-Security-Policy"]))
                                     {
@@ -54,9 +52,9 @@ namespace ContentSecurityPolicy.HttpModules
                                     response.AddHeader("Content-Security-Policy", policyHeader);
                                 }
                             }
-                            else if (location.StartsWith("http://") || location.StartsWith("https://"))
+                            else if (policy.Location.StartsWith("http://") || policy.Location.StartsWith("https://"))
                             {
-                                if (HttpHelpers.IsDomainRequest(location))
+                                if (HttpHelpers.IsDomainRequest(policy.Location))
                                 {
                                     if (!string.IsNullOrEmpty(response.Headers["Content-Security-Policy"]))
                                     {
@@ -73,11 +71,6 @@ namespace ContentSecurityPolicy.HttpModules
                         }
                     }
                 }
-                
-                    //response.AddHeader("Content-Security-Policy",
-                    //    "default-src 'self' data:; style-src 'self' 'unsafe-inline' fonts.googleapis.com; script-src 'self' 'unsafe-inline' 'unsafe-eval' code.jquery.com ajax.aspnetcdn.com; font-src 'self' fonts.gstatic.com");
-
-                    //response.AddHeader("Content-Security-Policy", "default-src 'self' data:; style-src 'self' 'unsafe-inline' fonts.googleapis.com; script-src 'self' 'unsafe-inline' code.jquery.com ajax.aspnetcdn.com; font-src 'self' fonts.gstatic.com");
             }
         }
     }
