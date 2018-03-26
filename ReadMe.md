@@ -6,8 +6,8 @@ Since most added scripts, fonts, images, objects, or other items that would be l
 
 For more information on CSPs, feel free to check out these handy references!
 
-* [Introduction to Content-Security-Policy](https://scotthelme.co.uk/content-security-policy-an-introduction/)
-* [Securing Your Umbraco Site](https://cultiv.nl/blog/so-you-want-to-secure-your-umbraco-site/)
+* [Introduction to Content-Security-Policy](https://scotthelme.co.uk/content-security-policy-an-introduction/) by Scott Helme
+* [Securing Your Umbraco Site](https://cultiv.nl/blog/so-you-want-to-secure-your-umbraco-site/) by Sebastiaan Janssen
 * [MDN Content-Security-Policy Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)
 
 ## Installation & Use
