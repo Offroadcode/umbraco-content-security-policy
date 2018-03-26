@@ -80,6 +80,25 @@ A simple but complete Content-Security-Policy might look like this:
 </Policy>
 ```
 
+#### Seeing It Work
+
+To make sure that your CSPs are being added correctly, you can open your development tools (for this example, we're using Chrome), go to the Network tab, make sure you refresh the page, and click on the main call for the website. This is likely the root domain if you're on your home page. You should see something like the following screenshot:
+
+![Network Tab in Development Tools showing Content-Security-Policy Headers](https://github.com/Offroadcode/umbraco-content-security-policy/blob/master/assets/cspNetworkTab.png?raw=true)
+
+Now, how do you know you have all your headers added properly without simply seeing broken CSS or Javascript? It's no problem - in your Developer tools, go back to your Console, and you'll see either nothing (yay, you're in the clear!) or some errors like I'm displaying here:
+
+![Console Content-Security-Policy header error](https://github.com/Offroadcode/umbraco-content-security-policy/blob/master/assets/cspError.PNG?raw=true)
+
+In this case, you can see I'm missing a font, and by clicking on the number of errors, I've expanded it (although I'm only displaying one in the screenshot), so we can now see what source is causing the problem. It looks like we need to add a font-src. Going back to the file and adding a new `Source` resolves the issue, like so:
+
+```xml
+<Source name="font-src">
+    <Allow>'self'</Allow>
+    <Allow>fonts.gstatic.com</Allow>
+</Source>
+```
+
 ## Questions?
 
 If you have questions, feel free to ask them [here](https://github.com/Offroadcode/umbraco-content-security-policy/issues).
