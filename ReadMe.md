@@ -4,6 +4,12 @@ This package for [Umbraco](https://umbraco.com) adds easily-configured Content S
 
 Since most added scripts, fonts, images, objects, or other items that would be limited by a Content-Security-Policy header are added by front-end developers, the goal of this package is to make it easy for a developer to add new policies when needed without having to parse complicated web.config files or dive into a custom HttpModule (which is what this package makes for you!).
 
+For more information on CSPs, feel free to check out these handy references!
+
+* [Introduction to Content-Security-Policy](https://scotthelme.co.uk/content-security-policy-an-introduction/)
+* [Securing Your Umbraco Site](https://cultiv.nl/blog/so-you-want-to-secure-your-umbraco-site/)
+* [MDN Content-Security-Policy Web Docs](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)
+
 ## Installation & Use
 
 You can install The Easy Content-Security-Policy Package to your Umbraco project using either the Umbraco package installer or by downloading and installing it locally from the package on the Our package repo.
