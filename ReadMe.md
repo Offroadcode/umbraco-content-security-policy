@@ -12,7 +12,7 @@ For more information on CSPs, feel free to check out these handy references!
 
 ## Installation & Use
 
-You can install The Easy Content-Security-Policy Package to your Umbraco project using either the Umbraco package installer or by downloading and installing it locally from the package on the Our package repo.
+You can install The Easy Content-Security-Policy Package to your Umbraco project using either the Umbraco package installer or by downloading and installing it locally from the package on the [Our package repo](https://our.umbraco.org/projects/developer-tools/easy-content-security-policy/).
 
 ### The ContentSecurityPolicies.config File
 
